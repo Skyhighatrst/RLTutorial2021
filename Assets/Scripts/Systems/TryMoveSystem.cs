@@ -2,9 +2,7 @@ using System;
 using Components;
 using Data;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine.SubsystemsImplementation;
 
 namespace Systems
 {
@@ -72,7 +70,6 @@ namespace Systems
                 // Add the end turn component to signal to the EndTurnSystem that the
                 // turn can be passed to the next entity or entities
                 ecb.AddComponent<EndTurn>(entityInQueryIndex, e);
-                ecb.RemoveComponent<TakingTurn>(entityInQueryIndex, e);
             }).ScheduleParallel();
 
             Dependency.Complete();

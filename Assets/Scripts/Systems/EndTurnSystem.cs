@@ -1,7 +1,5 @@
 using Components;
 using Unity.Entities;
-using Unity.Entities.CodeGeneratedJobForEach;
-using UnityEngine;
 
 namespace Systems
 {
