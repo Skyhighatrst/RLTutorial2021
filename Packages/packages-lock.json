@@ -53,11 +53,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "2.0.7",
+      "version": "3.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.1"
+        "com.unity.ext.nunit": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },
@@ -140,6 +140,15 @@
         "com.unity.properties": "1.6.0-preview",
         "com.unity.serialization": "1.6.1-preview",
         "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.rendering.hybrid": {
+      "version": "0.11.0-preview.44",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.entities": "0.17.0-preview.42"
       },
       "url": "https://packages.unity.com"
     },
