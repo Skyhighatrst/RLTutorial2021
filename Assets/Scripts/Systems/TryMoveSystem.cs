@@ -70,6 +70,7 @@ namespace Systems
                 // Add the end turn component to signal to the EndTurnSystem that the
                 // turn can be passed to the next entity or entities
                 ecb.AddComponent<EndTurn>(entityInQueryIndex, e);
+                ecb.RemoveComponent<TakingTurn>(entityInQueryIndex, e);
             }).ScheduleParallel();
 
             Dependency.Complete();
