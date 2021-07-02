@@ -6,18 +6,11 @@ using Unity.Transforms;
 
 namespace Systems
 {
-    public class TryMoveSystem : SystemBase
+    public class TryMoveSystem : GameSystemBase
     {
-        private EndSimulationEntityCommandBufferSystem barrier;
-
-        protected override void OnCreate()
-        {
-            barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-        }
-
         protected override void OnUpdate()
         {
-            var ecb = barrier.CreateCommandBuffer().AsParallelWriter();
+            var ecb = Barrier.CreateCommandBuffer().AsParallelWriter();
 
             Entities.WithAll<TryMove>().ForEach((Entity e, int entityInQueryIndex, ref Translation translation, in TryMove tryMove) =>
             {

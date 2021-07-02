@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Systems
 {
-    public class InputSystem : SystemBase
+    public class InputSystem : GameSystemBase
     {
         protected override void OnUpdate()
         {

@@ -7,23 +7,23 @@ namespace Systems
     /// System that process end turn events and determines which entity or entities should take their turn next.
     /// Has not yet been tested with non player entities, that come later.
     /// </summary>
-    public class EndTurnSystem : SystemBase
+    public class EndTurnSystem : GameSystemBase
     {
-        private EndSimulationEntityCommandBufferSystem barrier;
         private EntityQuery entitiesEndingTurn;
         private EntityQuery entitiesTakingTurns;
         private const float Threshold = 10;
 
         protected override void OnCreate()
         {
-            barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            base.OnCreate();
+            
             entitiesEndingTurn = GetEntityQuery(ComponentType.ReadOnly<EndTurn>());
             entitiesTakingTurns = GetEntityQuery(ComponentType.ReadOnly<TakingTurn>());
         }
         
         protected override void OnUpdate()
         {
-            var ecb = barrier.CreateCommandBuffer().AsParallelWriter();
+            var ecb = Barrier.CreateCommandBuffer().AsParallelWriter();
 
             // Turn count determines how many entities are ending their turn. 
             // if it's a player ending a turn this should only be one, but non player
