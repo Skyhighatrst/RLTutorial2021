@@ -15,8 +15,6 @@ public class Bootstrap : MonoBehaviour
     void Start()
     {
         entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        
-        
 
         var actorArchetype = entityManager.CreateArchetype(
             typeof(AwaitingTurn),
@@ -29,21 +27,20 @@ public class Bootstrap : MonoBehaviour
             typeof(RenderBounds),
             typeof(LocalToWorld)
         );
+        
+        
 
-        var playerEntity = ConfigureCharacter(actorArchetype, 0, 0, 1);
-        entityManager.AddComponent<PlayerTag>(playerEntity);
-        var playerEntity2 = ConfigureCharacter(actorArchetype, 2, 2, 1.5f);
-        entityManager.AddComponent<PlayerTag>(playerEntity2);
+        ConfigureCharacter(actorArchetype, 0, 0, 1, true);
+        ConfigureCharacter(actorArchetype, 2, 2, 1.5f, true);
         
         ConfigureCharacter(actorArchetype, 1, 1, 2);
         ConfigureCharacter(actorArchetype, 2, 1, 1);
         ConfigureCharacter(actorArchetype, 3, 1, .5f);
         ConfigureCharacter(actorArchetype, 4, 1, 5);
         ConfigureCharacter(actorArchetype, 5, 1, 1);
-        
     }
 
-    private Entity ConfigureCharacter(EntityArchetype playerArchetype, int x, int y, float speed)
+    private Entity ConfigureCharacter(EntityArchetype playerArchetype, int x, int y, float speed, bool isPlayerControlled = false)
     {
         var entity = entityManager.CreateEntity(playerArchetype);
 
@@ -58,6 +55,12 @@ public class Bootstrap : MonoBehaviour
             mesh = mesh,
             material = material,
         });
+
+        if (isPlayerControlled)
+        {
+            entityManager.AddComponent<PlayerTag>(entity);
+            entityManager.AddComponentData(entity, new MaterialColor {Value = new float4(1, 0, 0, 1f)});
+        }
 
         return entity;
     }
